@@ -247,41 +247,73 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.1}
 @media(max-width:860px){.sp-strip-inner{padding:14px 20px;gap:12px}.sp-mid{display:none}}
 @media(max-width:560px){.sp-left .sp-text{font-size:13px}.sp-num{font-size:22px}.sp-cta{font-size:13px;padding:9px 16px}}
 
-/* ══ JOURNEY V2 ══ */
-.journey-v2{}
-.jv2-wrap{position:relative}
-.jv2-connectors{position:absolute;top:72px;left:0;right:0;display:flex;justify-content:space-around;padding:0 12.5%;pointer-events:none;z-index:0}
-.jv2-conn-line{flex:1;height:2px;background:var(--border);margin:0 4px;position:relative;overflow:hidden;border-radius:1px}
-.jv2-conn-fill{position:absolute;left:0;top:0;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gm));transition:width .8s ease;border-radius:1px}
-@media(max-width:640px){.jv2-connectors{display:none}}
-.jv2-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1}
-@media(max-width:860px){.jv2-steps{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.jv2-steps{grid-template-columns:1fr}}
-.jv2-step{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r3);padding:28px 22px 24px;cursor:pointer;transition:all .4s ease;position:relative;overflow:hidden}
-.jv2-step::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gm));transform:scaleX(0);transition:transform .4s ease;transform-origin:left}
-.jv2-step.on{border-color:var(--gm);box-shadow:0 8px 32px rgba(201,168,76,.15);transform:translateY(-4px)}
-.jv2-step.on::after{transform:scaleX(1)}
-.jv2-step.on .jv2-step-num{color:var(--gold);background:var(--gp);border-color:var(--gl)}
-.jv2-step.on .jv2-icon-wrap{background:var(--gp)}
-.jv2-step-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--bg3);border:1.5px solid var(--border2);font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:16px;transition:all .4s;font-family:'DM Sans',sans-serif;letter-spacing:.5px}
-.jv2-icon-wrap{width:72px;height:72px;border-radius:18px;background:var(--bg);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:all .4s;overflow:hidden}
-.jv2-icon-gold.jv2-icon-wrap,.jv2-step.on .jv2-icon-gold{background:var(--gp)!important;border-color:var(--gl)!important}
-.jv2-svg{width:52px;height:52px}
-.jv2-step-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.2}
-.jv2-step-desc{font-size:13px;color:var(--ink3);line-height:1.65;margin-bottom:14px}
-.jv2-step-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--green);background:rgba(26,107,58,.07);border:1px solid rgba(26,107,58,.15);padding:4px 10px;border-radius:100px;font-weight:500}
-.jv2-step-tag i{font-size:9px}
-.jv2-step-tag-gold{color:var(--gold);background:var(--gp);border-color:var(--gl)}
-.jv2-prog-wrap{margin-top:28px;background:var(--white);border:1px solid var(--border);border-radius:var(--r3);overflow:hidden}
-.jv2-prog-bar{height:3px;background:var(--bg3)}
-.jv2-prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gm));width:0%;transition:none;position:relative}
-.jv2-prog-fill::after{content:'';position:absolute;right:0;top:-2.5px;width:8px;height:8px;border-radius:50%;background:var(--gm)}
-.jv2-prog-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-.jv2-btn{background:var(--bg);border:1.5px solid var(--border);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:8px 18px;border-radius:100px;cursor:pointer;transition:all var(--t)}
-.jv2-btn:hover{background:var(--gp);border-color:var(--gm)}
-.jv2-speed-btn{font-size:12px;color:var(--ink3);cursor:pointer;text-decoration:underline;text-underline-offset:2px;font-family:'DM Sans',sans-serif}
+/* ══ JOURNEY STEPPER ══ */
+.jst-outer{background:var(--white);border-radius:var(--r4);box-shadow:var(--sh2);overflow:hidden}
+/* shimmer gold bar */
+.jst-outer::before{content:'';display:block;height:4px;background:linear-gradient(90deg,var(--gold),var(--gm),var(--gold));background-size:200%;animation:jst-shine 3s linear infinite}
+@keyframes jst-shine{0%{background-position:200%}100%{background-position:-200%}}
 
-/* ══ CALCULATOR ══ *//* ══ CALCULATOR ══ */
+/* tab row */
+.jst-tabs{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+.jst-tab{padding:20px 20px 18px;cursor:pointer;position:relative;transition:background var(--t);border-right:1px solid var(--border)}
+.jst-tab:last-child{border-right:none}
+.jst-tab.on{background:var(--gp)}
+.jst-tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2.5px;background:var(--gold);transform:scaleX(0);transition:transform .4s ease;transform-origin:left}
+.jst-tab.on::after{transform:scaleX(1)}
+.jst-tab-num{font-size:10px;letter-spacing:2.5px;color:var(--ink3);font-weight:500;margin-bottom:4px;transition:color .3s}
+.jst-tab.on .jst-tab-num{color:var(--gold)}
+.jst-tab-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:var(--ink2);line-height:1.2;transition:color .3s}
+.jst-tab.on .jst-tab-name{color:var(--ink)}
+@media(max-width:640px){.jst-tabs{grid-template-columns:1fr 1fr}.jst-tab:nth-child(2){border-right:none}.jst-tab:nth-child(1),.jst-tab:nth-child(2){border-bottom:1px solid var(--border)}}
+@media(max-width:380px){.jst-tabs{grid-template-columns:1fr}.jst-tab{border-right:none;border-bottom:1px solid var(--border)}.jst-tab:last-child{border-bottom:none}}
+
+/* progress strip */
+.jst-prog{height:2px;background:var(--bg3);overflow:hidden}
+.jst-prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gm));width:0%;transition:none;position:relative}
+.jst-prog-fill::after{content:'';position:absolute;right:-1px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--gm);box-shadow:0 0 8px rgba(201,168,76,.5)}
+
+/* main content panel */
+.jst-panels{position:relative;overflow:hidden}
+.jst-panel{display:none;grid-template-columns:1fr 1fr;gap:0}
+.jst-panel.on{display:grid}
+@media(max-width:680px){.jst-panel,.jst-panel.on{grid-template-columns:1fr}}
+
+/* left: visual */
+.jst-visual{position:relative;overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border-right:1px solid var(--border)}
+@media(max-width:680px){.jst-visual{min-height:200px;border-right:none;border-bottom:1px solid var(--border)}}
+
+/* scene illustration backgrounds */
+.jst-vis-1{background:linear-gradient(160deg,#e8f4e8 0%,#c8e6c9 40%,#a5d6a7 60%,#d7ccc8 80%,#bcaaa4 100%)}
+.jst-vis-2{background:linear-gradient(160deg,#e3f2fd 0%,#bbdefb 45%,#e8f5e9 75%,#c8b870 100%)}
+.jst-vis-3{background:linear-gradient(160deg,#fff9e6 0%,#ffe0b2 40%,#d4a843 70%,#8d6030 100%)}
+.jst-vis-4{background:linear-gradient(160deg,#fffde7 0%,#fff9c4 30%,#c8e6c9 60%,#388e3c 85%,#8d6030 100%)}
+
+/* right: text */
+.jst-copy{padding:40px 44px;display:flex;flex-direction:column;justify-content:center}
+@media(max-width:860px){.jst-copy{padding:28px 28px}}
+.jst-copy-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:16px}
+.jst-copy-badge::before{content:'';width:16px;height:1.5px;background:var(--gold)}
+.jst-copy-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.5vw,44px);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:14px}
+.jst-copy-title em{font-style:italic;color:var(--gold)}
+.jst-copy-desc{font-size:15px;color:var(--ink3);line-height:1.75;margin-bottom:24px;max-width:380px}
+.jst-points{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.jst-point{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink2)}
+.jst-point-dot{width:20px;height:20px;border-radius:50%;background:var(--gp);border:1px solid var(--gl);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--gold);flex-shrink:0;margin-top:1px}
+.jst-point-dot i{font-size:9px}
+.jst-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:7px 14px;border-radius:100px;border:1.5px solid}
+.jst-chip-green{color:var(--green);border-color:rgba(26,107,58,.2);background:rgba(26,107,58,.06)}
+.jst-chip-gold{color:var(--gold);border-color:var(--gl);background:var(--gp)}
+
+/* nav */
+.jst-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:var(--bg);border-top:1px solid var(--border)}
+.jst-nav-btn{background:var(--white);border:1.5px solid var(--border);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:8px 18px;border-radius:100px;cursor:pointer;transition:all var(--t)}
+.jst-nav-btn:hover{background:var(--gp);border-color:var(--gm)}
+.jst-nav-center{display:flex;align-items:center;gap:6px}
+.jst-nav-dot{width:7px;height:7px;border-radius:50%;background:var(--border2);cursor:pointer;transition:all .3s}
+.jst-nav-dot.on{background:var(--gold);width:20px;border-radius:4px}
+.jst-speed{font-size:12px;color:var(--ink3);cursor:pointer;text-decoration:underline;text-underline-offset:2px;font-family:'DM Sans',sans-serif;margin-left:12px}
+
+/* ══ CALCULATOR ══ *//* ══ CALCULATOR ══ *//* ══ CALCULATOR ══ *//* ══ CALCULATOR ══ */
 .calc-wrap{background:var(--ink);position:relative;overflow:hidden}
 .cd{position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.1),transparent 65%);pointer-events:none}
 .cd2{position:absolute;bottom:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.06),transparent 65%);pointer-events:none}
@@ -537,7 +569,7 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
     <div class="sp-left">
       <div class="sp-pulse"></div>
       <div class="sp-text">
-        <span class="sp-num" id="spNum">67</span>
+        <span class="sp-num" id="spNum">74</span>
         <span class="sp-msg"> families have expressed interest in <strong>Lakeview Enclave, Nagamangala</strong> this week</span>
       </div>
     </div>
@@ -572,7 +604,7 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 <!-- PILLARS -->
 <section class="sp" style="background:var(--white)" id="why">
   <div class="container">
-    <div style="text-align:center;margin-bottom:65px">
+    <div style="text-align:center;margin-bottom:52px">
       <div class="eyebrow rev">Why Proprush</div>
       <h2 class="sec-title rev rd1">Three promises.<br><em>Zero compromises.</em></h2>
     </div>
@@ -777,178 +809,331 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 <div class="divider"></div>
 
 <!-- JOURNEY (new inline light-themed graphic) -->
-<section class="sp journey-v2" style="background:var(--bg2)" id="journey">
+<section class="sp" style="background:var(--bg2)" id="journey">
   <div class="container">
-    <div style="text-align:center;margin-bottom:52px">
+    <div style="text-align:center;margin-bottom:48px">
       <div class="eyebrow rev">How We Work</div>
-      <h2 class="sec-title rev rd1">From raw land to <em>your dream plot</em></h2>
-      <p class="sec-sub rev rd2" style="max-width:520px;margin:14px auto 0">Every Proprush project follows the same four-stage process — fully transparent, fully legal, every time.</p>
+      <h2 class="sec-title rev rd1">From raw land to <em>your plot</em></h2>
+      <p class="sec-sub rev rd2" style="max-width:480px;margin:14px auto 0">Four clear stages. Complete transparency. Fully legal, every single time.</p>
     </div>
 
-    <!-- DESKTOP: Horizontal 4-step timeline -->
-    <div class="jv2-wrap rev">
-      <!-- Step connectors (desktop only) -->
-      <div class="jv2-connectors" aria-hidden="true">
-        <div class="jv2-conn-line"><div class="jv2-conn-fill" id="jv2c0"></div></div>
-        <div class="jv2-conn-line"><div class="jv2-conn-fill" id="jv2c1"></div></div>
-        <div class="jv2-conn-line"><div class="jv2-conn-fill" id="jv2c2"></div></div>
-      </div>
+    <div class="rev jst-outer">
 
-      <!-- Step cards -->
-      <div class="jv2-steps" id="jv2Steps">
-
-        <div class="jv2-step on" onclick="jv2Go(0)" data-step="0">
-          <div class="jv2-step-num">01</div>
-          <div class="jv2-icon-wrap">
-            <div class="jv2-icon jv2-icon-scene" data-scene="1">
-              <!-- SVG: Raw land / terrain -->
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="jv2-svg">
-                <circle cx="48" cy="14" r="8" fill="#FFD600" opacity=".9"/>
-                <ellipse cx="48" cy="14" rx="14" ry="14" fill="#FFD600" opacity=".15"/>
-                <path d="M4 44 Q16 28 24 36 Q32 12 40 30 Q48 18 60 32 L60 52 L4 52Z" fill="#4CAF50"/>
-                <path d="M4 48 Q20 38 32 44 Q44 36 60 42 L60 56 L4 56Z" fill="#388E3C"/>
-                <rect x="4" y="52" width="56" height="8" rx="1" fill="#8D6E63"/>
-                <!-- Trees -->
-                <ellipse cx="16" cy="36" rx="5" ry="6" fill="#2E7D32"/>
-                <rect x="14.5" y="42" width="3" height="8" fill="#6D4C41"/>
-                <ellipse cx="52" cy="32" rx="5" ry="6" fill="#2E7D32"/>
-                <rect x="50.5" y="38" width="3" height="8" fill="#6D4C41"/>
-              </svg>
-            </div>
-          </div>
-          <div class="jv2-step-title">Raw Land<br>Acquisition</div>
-          <div class="jv2-step-desc">Prime land identified in Karnataka's fastest-growing corridors. Verified for title clarity before purchase.</div>
-          <div class="jv2-step-tag"><i class="fas fa-check"></i> EC &amp; RTC Verified</div>
+      <!-- TABS -->
+      <div class="jst-tabs" id="jstTabs">
+        <div class="jst-tab on" onclick="jstGo(0)">
+          <div class="jst-tab-num">STEP 01</div>
+          <div class="jst-tab-name">Land Acquisition</div>
         </div>
-
-        <div class="jv2-step" onclick="jv2Go(1)" data-step="1">
-          <div class="jv2-step-num">02</div>
-          <div class="jv2-icon-wrap">
-            <div class="jv2-icon">
-              <!-- SVG: Legal approval / stamp -->
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="jv2-svg">
-                <!-- Document -->
-                <rect x="12" y="8" width="36" height="46" rx="4" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
-                <rect x="18" y="18" width="24" height="2.5" rx="1.2" fill="#90CAF9"/>
-                <rect x="18" y="24" width="18" height="2.5" rx="1.2" fill="#BBDEFB"/>
-                <rect x="18" y="30" width="20" height="2.5" rx="1.2" fill="#BBDEFB"/>
-                <rect x="18" y="36" width="14" height="2.5" rx="1.2" fill="#BBDEFB"/>
-                <!-- Green checkmark circle -->
-                <circle cx="44" cy="44" r="12" fill="#4CAF50"/>
-                <circle cx="44" cy="44" r="14" fill="#4CAF50" opacity=".2"/>
-                <path d="M38 44 L42 48 L50 40" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <!-- Gold seal -->
-                <circle cx="20" cy="46" r="7" fill="#B8892A" opacity=".15" stroke="#B8892A" stroke-width="1.5"/>
-                <text x="20" y="50" text-anchor="middle" font-size="6" fill="#B8892A" font-weight="bold" font-family="sans-serif">DTCP</text>
-              </svg>
-            </div>
-          </div>
-          <div class="jv2-step-title">Survey &amp;<br>Legal Approval</div>
-          <div class="jv2-step-desc">DTCP, MUDA, RERA or Panchayat certification secured. Not a single plot sold without complete legal clearance.</div>
-          <div class="jv2-step-tag"><i class="fas fa-check"></i> 100% Encumbrance-Free</div>
+        <div class="jst-tab" onclick="jstGo(1)">
+          <div class="jst-tab-num">STEP 02</div>
+          <div class="jst-tab-name">Legal Approval</div>
         </div>
-
-        <div class="jv2-step" onclick="jv2Go(2)" data-step="2">
-          <div class="jv2-step-num">03</div>
-          <div class="jv2-icon-wrap">
-            <div class="jv2-icon">
-              <!-- SVG: Development / construction -->
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="jv2-svg">
-                <!-- Ground -->
-                <rect x="4" y="50" width="56" height="6" rx="2" fill="#8D6E63"/>
-                <!-- Road -->
-                <rect x="28" y="20" width="8" height="30" fill="#B0BEC5"/>
-                <rect x="4" y="44" width="56" height="8" fill="#B0BEC5"/>
-                <!-- Center line -->
-                <rect x="31.5" y="22" width="1.5" height="6" rx=".75" fill="#fff" opacity=".7"/>
-                <rect x="31.5" y="32" width="1.5" height="6" rx=".75" fill="#fff" opacity=".7"/>
-                <!-- Plot left -->
-                <rect x="6" y="22" width="18" height="20" rx="2" fill="#FFF9C4" stroke="#B8892A" stroke-width="1.5" stroke-dasharray="3,2"/>
-                <!-- Plot right -->
-                <rect x="40" y="22" width="18" height="20" rx="2" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
-                <!-- Sold check on right -->
-                <circle cx="49" cy="32" r="6" fill="#4CAF50" opacity=".9"/>
-                <path d="M46 32 L48.5 34.5 L52 30" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <!-- Street lamp -->
-                <rect x="4" y="24" width="2" height="20" rx="1" fill="#90A4AE"/>
-                <rect x="4" y="22" width="7" height="2.5" rx="1.2" fill="#90A4AE"/>
-                <circle cx="10" cy="22" r="3" fill="#FFD600" opacity=".8"/>
-                <!-- Tree -->
-                <ellipse cx="60" cy="30" rx="4" ry="5" fill="#4CAF50"/>
-                <rect x="58.5" y="35" width="3" height="7" fill="#6D4C41"/>
-              </svg>
-            </div>
-          </div>
-          <div class="jv2-step-title">Layout<br>Development</div>
-          <div class="jv2-step-desc">Tar roads, borewells, underground drainage, street lighting, parks — all infrastructure completed before handover.</div>
-          <div class="jv2-step-tag"><i class="fas fa-check"></i> Full Infrastructure</div>
+        <div class="jst-tab" onclick="jstGo(2)">
+          <div class="jst-tab-num">STEP 03</div>
+          <div class="jst-tab-name">Development</div>
         </div>
-
-        <div class="jv2-step" onclick="jv2Go(3)" data-step="3">
-          <div class="jv2-step-num">04</div>
-          <div class="jv2-icon-wrap">
-            <div class="jv2-icon jv2-icon-gold">
-              <!-- SVG: Dream home / community -->
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="jv2-svg">
-                <!-- Sky -->
-                <rect x="0" y="0" width="64" height="64" rx="0" fill="url(#skygrad)"/>
-                <defs>
-                  <linearGradient id="skygrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
-                    <stop offset="0%" stop-color="#E3F2FD"/>
-                    <stop offset="100%" stop-color="#B3E5FC"/>
-                  </linearGradient>
-                </defs>
-                <!-- Sun -->
-                <circle cx="52" cy="12" r="6" fill="#FFD600"/>
-                <circle cx="52" cy="12" r="10" fill="#FFD600" opacity=".2"/>
-                <!-- Ground & road -->
-                <rect x="0" y="50" width="64" height="14" fill="#388E3C"/>
-                <rect x="0" y="48" width="64" height="6" fill="#757575"/>
-                <!-- Road dashes -->
-                <rect x="8" y="50" width="6" height="1.5" rx=".75" fill="#FFD600" opacity=".6"/>
-                <rect x="20" y="50" width="6" height="1.5" rx=".75" fill="#FFD600" opacity=".6"/>
-                <rect x="32" y="50" width="6" height="1.5" rx=".75" fill="#FFD600" opacity=".6"/>
-                <rect x="44" y="50" width="6" height="1.5" rx=".75" fill="#FFD600" opacity=".6"/>
-                <!-- House 1 -->
-                <rect x="4" y="30" width="22" height="20" rx="2" fill="#ECEFF1"/>
-                <polygon points="4,30 15,18 26,30" fill="#C62828"/>
-                <!-- Windows -->
-                <rect x="7" y="34" width="6" height="6" rx="1" fill="#90CAF9"/>
-                <rect x="16" y="34" width="6" height="6" rx="1" fill="#90CAF9"/>
-                <!-- Door -->
-                <rect x="11" y="42" width="6" height="8" rx="1" fill="#5D4037"/>
-                <!-- House 2 -->
-                <rect x="38" y="32" width="22" height="18" rx="2" fill="#F1F8E9"/>
-                <polygon points="38,32 49,20 60,32" fill="#2E7D32"/>
-                <rect x="41" y="36" width="5" height="5" rx="1" fill="#90CAF9"/>
-                <rect x="50" y="36" width="5" height="5" rx="1" fill="#90CAF9"/>
-                <rect x="44.5" y="42" width="6" height="8" rx="1" fill="#4E342E"/>
-                <!-- Trees -->
-                <ellipse cx="30" cy="36" rx="4" ry="5" fill="#4CAF50"/>
-                <rect x="28.5" y="41" width="3" height="7" fill="#6D4C41"/>
-                <!-- Gold star -->
-                <text x="32" y="16" text-anchor="middle" font-size="10" fill="#B8892A">✦</text>
-              </svg>
-            </div>
-          </div>
-          <div class="jv2-step-title">Your Dream<br>Plot — Ready</div>
-          <div class="jv2-step-desc">Clear title deed in your name. Build your retirement home, holiday retreat, or hold as your family legacy.</div>
-          <div class="jv2-step-tag jv2-step-tag-gold"><i class="fas fa-star"></i> From ₹15 Lakhs</div>
-        </div>
-
-      </div>
-
-      <!-- Progress bar -->
-      <div class="jv2-prog-wrap">
-        <div class="jv2-prog-bar"><div class="jv2-prog-fill" id="jv2Prog"></div></div>
-        <div class="jv2-prog-nav">
-          <button class="jv2-btn" onclick="jv2Prev()">← Prev</button>
-          <span class="jv2-speed-btn" id="jv2SpeedBtn" onclick="jv2ToggleSpeed()">Speed up</span>
-          <button class="jv2-btn" onclick="jv2Next()">Next →</button>
+        <div class="jst-tab" onclick="jstGo(3)">
+          <div class="jst-tab-num">STEP 04</div>
+          <div class="jst-tab-name">Your Plot</div>
         </div>
       </div>
-    </div>
 
+      <!-- PROGRESS -->
+      <div class="jst-prog"><div class="jst-prog-fill" id="jstProg"></div></div>
+
+      <!-- PANELS -->
+      <div class="jst-panels">
+
+        <!-- PANEL 1 -->
+        <div class="jst-panel on" id="jstP0">
+          <div class="jst-visual jst-vis-1">
+            <svg width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sky gradient -->
+              <rect width="220" height="200" fill="url(#p1sky)"/>
+              <defs>
+                <linearGradient id="p1sky" x1="0" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFF8E1"/>
+                  <stop offset="55%" stop-color="#C8E6C9"/>
+                  <stop offset="100%" stop-color="#A5D6A7"/>
+                </linearGradient>
+              </defs>
+              <!-- Sun -->
+              <circle cx="172" cy="36" r="20" fill="#FFD600" opacity=".15"/>
+              <circle cx="172" cy="36" r="13" fill="#FFD600" opacity=".9"/>
+              <!-- Sun rays -->
+              <line x1="172" y1="16" x2="172" y2="8" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="172" y1="56" x2="172" y2="64" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="152" y1="36" x2="144" y2="36" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="192" y1="36" x2="200" y2="36" stroke="#FFD600" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="158" y1="22" x2="152" y2="16" stroke="#FFD600" stroke-width="2" stroke-linecap="round"/>
+              <line x1="186" y1="50" x2="192" y2="56" stroke="#FFD600" stroke-width="2" stroke-linecap="round"/>
+              <!-- Clouds -->
+              <rect x="16" y="30" width="60" height="16" rx="8" fill="white" opacity=".85"/>
+              <rect x="24" y="22" width="40" height="18" rx="9" fill="white" opacity=".85"/>
+              <rect x="70" y="50" width="44" height="13" rx="6.5" fill="white" opacity=".7"/>
+              <!-- Rolling hills -->
+              <path d="M0 130 Q30 90 60 110 Q90 70 120 100 Q150 75 180 95 Q200 80 220 88 L220 200 L0 200Z" fill="#4CAF50" opacity=".9"/>
+              <path d="M0 148 Q40 118 80 138 Q120 108 160 128 Q190 115 220 120 L220 200 L0 200Z" fill="#388E3C" opacity=".9"/>
+              <!-- Ground / soil -->
+              <rect x="0" y="168" width="220" height="32" fill="#8D6E63"/>
+              <!-- Grass strip -->
+              <rect x="0" y="164" width="220" height="8" fill="#66BB6A"/>
+              <!-- Trees - left cluster -->
+              <ellipse cx="42" cy="120" rx="16" ry="20" fill="#2E7D32"/>
+              <ellipse cx="42" cy="108" rx="12" ry="14" fill="#388E3C"/>
+              <rect x="38" y="136" width="8" height="24" rx="2" fill="#6D4C41"/>
+              <!-- Trees - right cluster -->
+              <ellipse cx="178" cy="108" rx="18" ry="22" fill="#1B5E20"/>
+              <ellipse cx="178" cy="96" rx="13" ry="15" fill="#2E7D32"/>
+              <rect x="174" y="126" width="8" height="26" rx="2" fill="#6D4C41"/>
+              <!-- Small tree center -->
+              <ellipse cx="108" cy="128" rx="12" ry="15" fill="#33691E"/>
+              <rect x="105" y="140" width="6" height="18" rx="2" fill="#5D4037"/>
+              <!-- Birds -->
+              <path d="M55 55 Q60 50 65 55" stroke="#546E7A" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M80 42 Q86 36 92 42" stroke="#546E7A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="jst-copy">
+            <div class="jst-copy-badge">Step 01 of 04</div>
+            <div class="jst-copy-title">Raw Land<br><em>Acquisition</em></div>
+            <div class="jst-copy-desc">Prime land identified across Karnataka's fastest-growing corridors. Every site verified for clear title, EC and RTC before we commit to a single rupee.</div>
+            <div class="jst-points">
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Encumbrance Certificate (EC) verified</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Revenue records (RTC) cross-checked</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Site visits in Nagamangala, Mysore, Mandya, Bangalore outskirts</div>
+            </div>
+            <span class="jst-chip jst-chip-green"><i class="fas fa-check-circle"></i> Title-Clear Land Only</span>
+          </div>
+        </div>
+
+        <!-- PANEL 2 -->
+        <div class="jst-panel" id="jstP1">
+          <div class="jst-visual jst-vis-2">
+            <svg width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="p2bg" x1="0" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#E3F2FD"/>
+                  <stop offset="60%" stop-color="#F5F0E8"/>
+                  <stop offset="100%" stop-color="#C8A870"/>
+                </linearGradient>
+              </defs>
+              <rect width="220" height="200" fill="url(#p2bg)"/>
+              <!-- Ground -->
+              <rect x="0" y="158" width="220" height="42" fill="#A1887F"/>
+              <rect x="0" y="154" width="220" height="8" fill="#9CCC65"/>
+              <!-- Document -->
+              <rect x="54" y="28" width="86" height="110" rx="6" fill="white" stroke="#90CAF9" stroke-width="1.5" filter="url(#dshadow)"/>
+              <defs><filter id="dshadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="rgba(0,0,0,0.10)"/></filter></defs>
+              <!-- Doc header -->
+              <rect x="54" y="28" width="86" height="22" rx="6" fill="#1565C0" opacity=".85"/>
+              <rect x="54" y="42" width="86" height="8" fill="#1565C0" opacity=".85"/>
+              <text x="97" y="43" text-anchor="middle" font-size="9" fill="white" font-weight="700" font-family="sans-serif">DTCP APPROVAL</text>
+              <!-- Doc lines -->
+              <rect x="64" y="60" width="66" height="3" rx="1.5" fill="#90CAF9"/>
+              <rect x="64" y="68" width="50" height="3" rx="1.5" fill="#BBDEFB"/>
+              <rect x="64" y="76" width="58" height="3" rx="1.5" fill="#BBDEFB"/>
+              <rect x="64" y="84" width="44" height="3" rx="1.5" fill="#BBDEFB"/>
+              <rect x="64" y="92" width="60" height="3" rx="1.5" fill="#BBDEFB"/>
+              <rect x="64" y="100" width="38" height="3" rx="1.5" fill="#BBDEFB"/>
+              <!-- Seal circle -->
+              <circle cx="80" cy="122" r="14" fill="none" stroke="#B8892A" stroke-width="2" stroke-dasharray="4,2"/>
+              <circle cx="80" cy="122" r="10" fill="#FBF5E6"/>
+              <text x="80" y="126" text-anchor="middle" font-size="6.5" fill="#B8892A" font-weight="700" font-family="sans-serif">SEAL</text>
+              <!-- Green approved circle + check -->
+              <circle cx="126" cy="112" r="22" fill="#E8F5E9"/>
+              <circle cx="126" cy="112" r="18" fill="#4CAF50"/>
+              <path d="M116 112 L122 119 L136 104" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Small approval chips -->
+              <rect x="148" y="32" width="50" height="18" rx="9" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+              <text x="173" y="44" text-anchor="middle" font-size="7.5" fill="#2E7D32" font-weight="600" font-family="sans-serif">RERA</text>
+              <rect x="148" y="56" width="50" height="18" rx="9" fill="#FBF5E6" stroke="#F5E4B0" stroke-width="1"/>
+              <text x="173" y="68" text-anchor="middle" font-size="7.5" fill="#B8892A" font-weight="600" font-family="sans-serif">MUDA</text>
+              <rect x="148" y="80" width="50" height="18" rx="9" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+              <text x="173" y="92" text-anchor="middle" font-size="7.5" fill="#1565C0" font-weight="600" font-family="sans-serif">DTCP</text>
+            </svg>
+          </div>
+          <div class="jst-copy">
+            <div class="jst-copy-badge">Step 02 of 04</div>
+            <div class="jst-copy-title">Survey &amp;<br><em>Legal Approval</em></div>
+            <div class="jst-copy-desc">Full government certification secured before a single plot is offered for sale. We never cut corners on legal compliance — ever.</div>
+            <div class="jst-points">
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>DTCP / MUDA / RERA / Panchayat approval obtained</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Layout plan approved by competent authority</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>All documents available for buyer review before payment</div>
+            </div>
+            <span class="jst-chip jst-chip-green"><i class="fas fa-check-circle"></i> 100% Encumbrance-Free</span>
+          </div>
+        </div>
+
+        <!-- PANEL 3 -->
+        <div class="jst-panel" id="jstP2">
+          <div class="jst-visual jst-vis-3">
+            <svg width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="p3bg" x1="0" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFFDE7"/>
+                  <stop offset="45%" stop-color="#FFE082"/>
+                  <stop offset="75%" stop-color="#D4A843"/>
+                  <stop offset="100%" stop-color="#8D6030"/>
+                </linearGradient>
+              </defs>
+              <rect width="220" height="200" fill="url(#p3bg)"/>
+              <!-- Ground layer -->
+              <rect x="0" y="160" width="220" height="40" fill="#8D6E63"/>
+              <!-- Main road horizontal -->
+              <rect x="0" y="138" width="220" height="16" fill="#9E9E9E"/>
+              <rect x="0" y="145" width="220" height="2" fill="white" opacity=".5"/>
+              <!-- Road dashes -->
+              <rect x="10" y="144" width="18" height="3" rx="1.5" fill="white" opacity=".7"/>
+              <rect x="40" y="144" width="18" height="3" rx="1.5" fill="white" opacity=".7"/>
+              <rect x="70" y="144" width="18" height="3" rx="1.5" fill="white" opacity=".7"/>
+              <rect x="100" y="144" width="18" height="3" rx="1.5" fill="white" opacity=".7"/>
+              <rect x="130" y="144" width="18" height="3" rx="1.5" fill="white" opacity=".7"/>
+              <rect x="160" y="144" width="18" height="3" rx="1.5" fill="white" opacity=".7"/>
+              <rect x="190" y="144" width="18" height="3" rx="1.5" fill="white" opacity=".7"/>
+              <!-- Vertical roads -->
+              <rect x="70" y="40" width="14" height="98" fill="#9E9E9E"/>
+              <rect x="136" y="40" width="14" height="98" fill="#9E9E9E"/>
+              <!-- Plots - available (golden) -->
+              <rect x="10" y="52" width="56" height="82" rx="3" fill="#FFF9C4" stroke="#B8892A" stroke-width="2" stroke-dasharray="5,3"/>
+              <rect x="88" y="52" width="44" height="82" rx="3" fill="#FFF9C4" stroke="#B8892A" stroke-width="2" stroke-dasharray="5,3"/>
+              <!-- Plots - sold (green) -->
+              <rect x="154" y="52" width="56" height="82" rx="3" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+              <!-- SOLD check -->
+              <circle cx="182" cy="93" r="16" fill="#4CAF50" opacity=".9"/>
+              <path d="M173 93 L179 100 L192 84" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- AVAIL labels -->
+              <text x="38" y="97" text-anchor="middle" font-size="9" fill="#B8892A" font-weight="700" font-family="sans-serif">AVAIL</text>
+              <text x="110" y="97" text-anchor="middle" font-size="9" fill="#B8892A" font-weight="700" font-family="sans-serif">AVAIL</text>
+              <!-- Street lamp left -->
+              <rect x="8" y="52" width="4" height="36" rx="2" fill="#90A4AE"/>
+              <rect x="8" y="50" width="16" height="4" rx="2" fill="#90A4AE"/>
+              <circle cx="24" cy="52" r="5" fill="#FFD600" opacity=".85"/>
+              <!-- Street lamp right -->
+              <rect x="208" y="52" width="4" height="36" rx="2" fill="#90A4AE"/>
+              <rect x="196" y="50" width="16" height="4" rx="2" fill="#90A4AE"/>
+              <circle cx="196" cy="52" r="5" fill="#FFD600" opacity=".85"/>
+              <!-- Trees -->
+              <ellipse cx="38" cy="42" rx="10" ry="12" fill="#4CAF50"/>
+              <rect x="34.5" y="52" width="7" height="10" rx="2" fill="#6D4C41"/>
+              <ellipse cx="110" cy="42" rx="10" ry="12" fill="#388E3C"/>
+              <rect x="106.5" y="52" width="7" height="10" rx="2" fill="#6D4C41"/>
+            </svg>
+          </div>
+          <div class="jst-copy">
+            <div class="jst-copy-badge">Step 03 of 04</div>
+            <div class="jst-copy-title">Layout<br><em>Development</em></div>
+            <div class="jst-copy-desc">Full infrastructure built out before any plot is handed over. Roads, water, drainage, lighting — every amenity completed to standard.</div>
+            <div class="jst-points">
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Tar roads with storm drainage</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Borewell &amp; water supply commissioned</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Underground drainage, street lights, compound wall</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Children's park &amp; walking track</div>
+            </div>
+            <span class="jst-chip jst-chip-green"><i class="fas fa-check-circle"></i> Full Infrastructure Before Handover</span>
+          </div>
+        </div>
+
+        <!-- PANEL 4 -->
+        <div class="jst-panel" id="jstP3">
+          <div class="jst-visual jst-vis-4">
+            <svg width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="p4sky" x1="0" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#E3F2FD"/>
+                  <stop offset="40%" stop-color="#B3E5FC"/>
+                  <stop offset="65%" stop-color="#C8E6C9"/>
+                  <stop offset="85%" stop-color="#388E3C"/>
+                  <stop offset="100%" stop-color="#8D6E63"/>
+                </linearGradient>
+              </defs>
+              <rect width="220" height="200" fill="url(#p4sky)"/>
+              <!-- Sun -->
+              <circle cx="178" cy="30" r="18" fill="#FFD600" opacity=".15"/>
+              <circle cx="178" cy="30" r="11" fill="#FFD600"/>
+              <!-- Clouds -->
+              <rect x="10" y="24" width="56" height="14" rx="7" fill="white" opacity=".88"/>
+              <rect x="20" y="16" width="36" height="14" rx="7" fill="white" opacity=".85"/>
+              <rect x="80" y="36" width="40" height="12" rx="6" fill="white" opacity=".72"/>
+              <!-- Ground -->
+              <rect x="0" y="162" width="220" height="38" fill="#388E3C"/>
+              <!-- Road -->
+              <rect x="0" y="148" width="220" height="14" fill="#757575"/>
+              <!-- Road dashes -->
+              <rect x="12" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <rect x="36" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <rect x="60" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <rect x="84" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <rect x="108" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <rect x="132" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <rect x="156" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <rect x="180" y="154" width="14" height="2.5" rx="1.25" fill="#FFD600" opacity=".65"/>
+              <!-- House 1 - warm terracotta roof -->
+              <polygon points="20,90 64,60 108,90" fill="#C62828"/>
+              <rect x="24" y="88" width="80" height="60" rx="3" fill="#ECEFF1" stroke="#CFD8DC" stroke-width="1"/>
+              <!-- House 1 windows (lit warm) -->
+              <rect x="32" y="98" width="18" height="16" rx="2" fill="#FFF9C4" stroke="#F9A825" stroke-width="1"/>
+              <rect x="58" y="98" width="18" height="16" rx="2" fill="#FFF9C4" stroke="#F9A825" stroke-width="1"/>
+              <!-- House 1 door -->
+              <rect x="47" y="116" width="18" height="32" rx="2" fill="#5D4037"/>
+              <circle cx="62" cy="132" r="2" fill="#FFD600"/>
+              <!-- House 2 - green roof -->
+              <polygon points="112,94 156,66 200,94" fill="#1B5E20"/>
+              <rect x="116" y="92" width="80" height="56" rx="3" fill="#F1F8E9" stroke="#C8E6C9" stroke-width="1"/>
+              <!-- House 2 windows (lit cool blue) -->
+              <rect x="124" y="102" width="18" height="14" rx="2" fill="#B3E5FC" stroke="#29B6F6" stroke-width="1"/>
+              <rect x="150" y="102" width="18" height="14" rx="2" fill="#B3E5FC" stroke="#29B6F6" stroke-width="1"/>
+              <!-- House 2 door -->
+              <rect x="139" y="118" width="18" height="30" rx="2" fill="#4E342E"/>
+              <circle cx="154" cy="133" r="2" fill="#FFD600"/>
+              <!-- Lamp posts -->
+              <rect x="104" y="108" width="4" height="36" rx="2" fill="#90A4AE"/>
+              <rect x="99" y="106" width="14" height="4" rx="2" fill="#90A4AE"/>
+              <circle cx="99" cy="107" r="6" fill="#FFD600" opacity=".75"/>
+              <!-- Trees between houses -->
+              <ellipse cx="108" cy="112" rx="10" ry="13" fill="#4CAF50"/>
+              <rect x="105" y="122" width="6" height="20" rx="2" fill="#6D4C41"/>
+              <!-- Big tree left -->
+              <ellipse cx="14" cy="110" rx="12" ry="14" fill="#2E7D32"/>
+              <ellipse cx="14" cy="100" rx="9" ry="11" fill="#388E3C"/>
+              <rect x="11" y="122" width="6" height="20" rx="2" fill="#6D4C41"/>
+              <!-- Gold star/badge top -->
+              <circle cx="110" cy="36" r="18" fill="#B8892A" opacity=".12"/>
+              <circle cx="110" cy="36" r="13" fill="#B8892A" opacity=".18"/>
+              <text x="110" y="41" text-anchor="middle" font-size="15" fill="#B8892A">✦</text>
+            </svg>
+          </div>
+          <div class="jst-copy">
+            <div class="jst-copy-badge">Step 04 of 04</div>
+            <div class="jst-copy-title">Your Dream<br><em>Plot — Ready</em></div>
+            <div class="jst-copy-desc">Clear title deed registered in your name. Build a retirement home, holiday retreat, or hold as a legacy investment — starting from just ₹15 Lakhs.</div>
+            <div class="jst-points">
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Title deed registered in your name</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Bank loan eligible — all major banks</div>
+              <div class="jst-point"><div class="jst-point-dot"><i class="fas fa-check"></i></div>Post-handover support from the Proprush team</div>
+            </div>
+            <span class="jst-chip jst-chip-gold"><i class="fas fa-star"></i> Starting ₹15 Lakhs · 120 Plots · Lakeview Enclave</span>
+          </div>
+        </div>
+
+      </div><!-- end panels -->
+
+      <!-- NAV -->
+      <div class="jst-nav">
+        <button class="jst-nav-btn" onclick="jstPrev()">← Prev</button>
+        <div class="jst-nav-center">
+          <div class="jst-nav-dot on" onclick="jstGo(0)"></div>
+          <div class="jst-nav-dot" onclick="jstGo(1)"></div>
+          <div class="jst-nav-dot" onclick="jstGo(2)"></div>
+          <div class="jst-nav-dot" onclick="jstGo(3)"></div>
+          <span class="jst-speed" id="jstSpeed" onclick="jstToggleSpeed()">Speed up</span>
+        </div>
+        <button class="jst-nav-btn" onclick="jstNext()">Next →</button>
+      </div>
+
+    </div><!-- end jst-outer -->
   </div>
 </section>
 
@@ -1250,76 +1435,73 @@ document.getElementById('heroForm').addEventListener('submit',e=>{
 
 /* ── SOCIAL PROOF STRIP ── */
 (function(){
-  const nums = Array.from({length:26},(_,i)=>50+i); // 50..75
-  const el = document.getElementById('spNum');
-  const bar = document.getElementById('spBar');
+  const FOUR_HOURS = 4 * 60 * 60 * 1000;
+  const TOTAL_PLOTS = 120;  // Lakeview Enclave total
+  const FLOOR = 74;         // starting interest count — fixed, only grows
+  const CEIL  = 84;         // soft ceiling
+
+  const el    = document.getElementById('spNum');
+  const bar   = document.getElementById('spBar');
   const label = document.getElementById('spLabel');
   if(!el) return;
-  // Set random initial number
-  let cur = nums[Math.floor(Math.random()*nums.length)];
-  function update(){
-    // Occasionally increment (simulates interest growing)
-    const chance = Math.random();
-    if(chance > 0.6 && cur < 75) cur++;
-    else if(chance < 0.15 && cur > 50) cur--;
-    el.classList.add('updating');
-    setTimeout(()=>{
-      el.textContent = cur;
-      el.classList.remove('updating');
-    }, 200);
-    // Update bar (50=min, 75=max → show as ~60%-85% full for urgency)
-    const pct = 85 - ((cur - 50) / 25) * 25; // bar fills as interest grows
-    bar.style.width = pct + '%';
-    // Update label
-    const remaining = Math.max(2, 30 - Math.floor((cur-50)/2));
-    label.textContent = remaining <= 5 ? `Only ${remaining} plots remaining!` :
-                        remaining <= 10 ? `${remaining} plots left — selling fast` :
-                        `${remaining} plots remaining`;
+
+  // Persist number — only increments every 4 hours, never resets on refresh
+  let stored = {};
+  try { stored = JSON.parse(localStorage.getItem('pr_sp_v2') || '{}'); } catch(e){}
+  // Reject any cached value below FLOOR (old random data from a previous version)
+  let cur      = (stored.num && stored.num >= FLOOR) ? stored.num : FLOOR;
+  let lastTick = stored.ts  || Date.now();
+
+  if(Date.now() - lastTick >= FOUR_HOURS && cur < CEIL){
+    cur++;
+    lastTick = Date.now();
+    try { localStorage.setItem('pr_sp_v2', JSON.stringify({num:cur, ts:lastTick})); } catch(e){}
+  } else if(!stored.num || stored.num < FLOOR){
+    // First visit OR stale data from old version — write clean baseline
+    try { localStorage.setItem('pr_sp_v2', JSON.stringify({num:FLOOR, ts:Date.now()})); } catch(e){}
   }
-  el.textContent = cur;
-  bar.style.width = '72%';
-  // Update every 8-15 seconds randomly
-  function scheduleNext(){
-    const delay = 8000 + Math.random() * 7000;
-    setTimeout(()=>{ update(); scheduleNext(); }, delay);
+
+  function renderStrip(n){
+    el.textContent = n;
+    // Remaining: out of 120 total, assume ~55% of expressed interest converted to bookings
+    // so bookings ≈ round(n * 0.55), remaining = 120 - bookings
+    const booked = Math.round(n * 0.56);
+    const rem    = Math.max(8, TOTAL_PLOTS - booked);
+    // Progress bar shows how full the project is (booked / total)
+    bar.style.width = Math.min(92, Math.round((booked / TOTAL_PLOTS) * 100)) + '%';
+    label.textContent = rem <= 10 ? 'Only ' + rem + ' of 120 plots remaining!' :
+                        rem <= 20 ? rem + ' of 120 plots left — selling fast'   :
+                        rem + ' of 120 plots remaining';
   }
-  scheduleNext();
+
+  renderStrip(cur);
 })();
 
-/* ── JOURNEY V2 ── */
+/* ── JOURNEY STEPPER ── */
 (function(){
-  const JD=[
-    {num:'01',title:'Raw Land Acquisition'},
-    {num:'02',title:'Survey & Legal Approval'},
-    {num:'03',title:'Layout Development'},
-    {num:'04',title:'Your Dream Plot — Ready'}
-  ];
-  let jCur=0,jFast=false,jRaf=null,jT0=null;
-  function jv2UI(i){
-    document.querySelectorAll('.jv2-step').forEach((s,idx)=>s.classList.toggle('on',idx===i));
-    // Fill connectors
-    for(let k=0;k<3;k++){
-      const c=document.getElementById('jv2c'+k);
-      if(c)c.style.width=(k<i?'100%':'0%');
-    }
+  let cur=0, fast=false, raf=null, t0=null;
+  const TOTAL=4;
+  function ui(i){
+    document.querySelectorAll('.jst-tab').forEach((t,idx)=>t.classList.toggle('on',idx===i));
+    document.querySelectorAll('.jst-panel').forEach((p,idx)=>p.classList.toggle('on',idx===i));
+    document.querySelectorAll('.jst-nav-dot').forEach((d,idx)=>d.classList.toggle('on',idx===i));
   }
-  function jv2Prog(){
-    if(jRaf)cancelAnimationFrame(jRaf);jT0=null;
-    const bar=document.getElementById('jv2Prog');
+  function prog(){
+    if(raf)cancelAnimationFrame(raf);t0=null;
+    const bar=document.getElementById('jstProg');
     if(!bar)return;
     bar.style.transition='none';bar.style.width='0%';
-    const dur=jFast?1400:4600;
-    function tick(ts){if(!jT0)jT0=ts;const p=Math.min((ts-jT0)/dur,1);bar.style.width=(p*100)+'%';if(p<1){jRaf=requestAnimationFrame(tick);}else{jCur=(jCur+1)%4;jv2UI(jCur);jv2Prog();}}
-    requestAnimationFrame(()=>{jRaf=requestAnimationFrame(tick);});
+    const dur=fast?1400:5200;
+    function tick(ts){if(!t0)t0=ts;const p=Math.min((ts-t0)/dur,1);bar.style.width=(p*100)+'%';if(p<1){raf=requestAnimationFrame(tick);}else{cur=(cur+1)%TOTAL;ui(cur);prog();}}
+    requestAnimationFrame(()=>{raf=requestAnimationFrame(tick);});
   }
-  window.jv2Go=function(i){if(jRaf)cancelAnimationFrame(jRaf);jCur=i;jv2UI(i);jv2Prog();};
-  window.jv2Next=function(){jv2Go((jCur+1)%4);};
-  window.jv2Prev=function(){jv2Go((jCur+3)%4);};
-  window.jv2ToggleSpeed=function(){jFast=!jFast;const b=document.getElementById('jv2SpeedBtn');if(b)b.textContent=jFast?'Slow down':'Speed up';if(jRaf)cancelAnimationFrame(jRaf);jv2Prog();};
-  jv2UI(0);jv2Prog();
+  window.jstGo=function(i){if(raf)cancelAnimationFrame(raf);cur=i;ui(i);prog();};
+  window.jstNext=function(){jstGo((cur+1)%TOTAL);};
+  window.jstPrev=function(){jstGo((cur+TOTAL-1)%TOTAL);};
+  window.jstToggleSpeed=function(){fast=!fast;const s=document.getElementById('jstSpeed');if(s)s.textContent=fast?'Slow down':'Speed up';if(raf)cancelAnimationFrame(raf);prog();};
+  ui(0);prog();
 })();
-
-/* ── CALCULATOR ── *//* ── CALCULATOR ── */
+/* ── CALCULATOR ── *//* ── CALCULATOR ── *//* ── CALCULATOR ── *//* ── CALCULATOR ── */
 const SZLBLS=['30×40','30×50','40×60','50×80'];
 let H=3;
 function setH(yr,btn){H=yr;document.querySelectorAll('.ctb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');calcUp();}
